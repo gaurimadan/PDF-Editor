@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import axios from "axios";
+import "react-pdf/dist/esm/Page/AnnotationLayer.css";
+import "react-pdf/dist/esm/Page/TextLayer.css";
 import "./PdfViewer.css";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-
-
+// Set worker source
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.js', 
+  import.meta.url
+).toString();
 
 const MyPdfViewer = ({ myFile }) => {
   const [numPages, setNumPages] = useState(null);
@@ -14,29 +17,37 @@ const MyPdfViewer = ({ myFile }) => {
   const [translatedText, setTranslatedText] = useState("");
   const [speakingSentenceIndex, setSpeakingSentenceIndex] = useState(null);
   const [pausedAtSentenceIndex, setPausedAtSentenceIndex] = useState(null);
-  const [language, setLanguage] = useState("en"); // State for language selection
+  const [language, setLanguage] = useState("en");
+
+  const translateToGujarati = async (text) => {
+    // Placeholder translation function
+    return text;
+  };
 
   useEffect(() => {
     const loadPdf = async () => {
-      const loadingTask = pdfjs.getDocument(myFile);
-      const pdf = await loadingTask.promise;
+      try {
+        const loadingTask = pdfjs.getDocument(myFile);
+        const pdf = await loadingTask.promise;
 
-      setNumPages(pdf.numPages);
+        setNumPages(pdf.numPages);
 
-      const page = await pdf.getPage(pageNumber);
-      const content = await page.getTextContent();
-      const rawText = content.items.map((item) => item.str).join(" ");
+        const page = await pdf.getPage(pageNumber);
+        const content = await page.getTextContent();
+        const rawText = content.items.map((item) => item.str).join(" ");
 
-      const normalizedText = normalizeText(rawText);
+        const normalizedText = normalizeText(rawText);
 
-      setText(normalizedText);
+        setText(normalizedText);
 
-      if (language === "gu") {
-        // Translate the extracted text to Gujarati
-        const gujaratiTranslation = await translateToGujarati(normalizedText);
-        setTranslatedText(gujaratiTranslation);
-      } else {
-        setTranslatedText(normalizedText); // Set the text directly for English
+        if (language === "gu") {
+          const gujaratiTranslation = await translateToGujarati(normalizedText);
+          setTranslatedText(gujaratiTranslation);
+        } else {
+          setTranslatedText(normalizedText);
+        }
+      } catch (error) {
+        console.error("PDF loading error:", error);
       }
     };
 
@@ -44,7 +55,7 @@ const MyPdfViewer = ({ myFile }) => {
   }, [myFile, pageNumber, language]);
 
   const speakText = () => {
-    const sentences = getTextSentences(translatedText); // Use translated or original text
+    const sentences = getTextSentences(translatedText);
     let i = pausedAtSentenceIndex !== null ? pausedAtSentenceIndex : 0;
 
     const speakSentence = () => {
@@ -56,7 +67,7 @@ const MyPdfViewer = ({ myFile }) => {
         utterance.volume = 1;
 
         const voices = window.speechSynthesis.getVoices();
-        const languageCode = language === "gu" ? "gu-IN" : "en-US"; // Set language code
+        const languageCode = language === "gu" ? "gu-IN" : "en-US";
         const selectedVoice = voices.find(voice => voice.lang === languageCode);
 
         if (selectedVoice) {
@@ -93,14 +104,17 @@ const MyPdfViewer = ({ myFile }) => {
   return (
     <div style={{ height: "100%" }} className="pdf-viewer-container">
       <nav className="pdf-viewer-nav">
-        <button onClick={goToPrevPage}>Prev</button>
-        <button onClick={goToNextPage}>Next</button>
+        <button onClick={goToPrevPage} disabled={pageNumber <= 1}>Prev</button>
+        <button onClick={goToNextPage} disabled={pageNumber >= numPages}>Next</button>
         <button onClick={speakText}>Speak</button>
         <button onClick={stopSpeech}>Stop</button>
 
-        <select onChange={(e) => setLanguage(e.target.value)} value={language}>
+        <select 
+          onChange={(e) => setLanguage(e.target.value)} 
+          value={language}
+        >
           <option value="en">English</option>
-          
+          <option value="gu">Gujarati</option>
         </select>
 
         <p>
@@ -109,20 +123,16 @@ const MyPdfViewer = ({ myFile }) => {
       </nav>
 
       <div className="pdf-viewer-content">
-        <Document file={myFile} onLoadSuccess={onDocumentLoadSuccess}>
+        <Document 
+          file={myFile} 
+          onLoadSuccess={onDocumentLoadSuccess}
+        >
           <Page pageNumber={pageNumber} />
         </Document>
-
-       
-
       </div>
     </div>
   );
 };
-
-
-
-    
 
 function getTextSentences(text) {
   return text.split(".").filter((sentence) => sentence.trim() !== "");
