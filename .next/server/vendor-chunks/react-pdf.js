@@ -11,26 +11,6 @@ exports.id = "vendor-chunks/react-pdf";
 exports.ids = ["vendor-chunks/react-pdf"];
 exports.modules = {
 
-/***/ "(ssr)/./node_modules/react-pdf/dist/esm/Page/AnnotationLayer.css":
-/*!******************************************************************!*\
-  !*** ./node_modules/react-pdf/dist/esm/Page/AnnotationLayer.css ***!
-  \******************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"ae72b94089eb\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvcmVhY3QtcGRmL2Rpc3QvZXNtL1BhZ2UvQW5ub3RhdGlvbkxheWVyLmNzcyIsIm1hcHBpbmdzIjoiOzs7O0FBQUEsaUVBQWUsY0FBYztBQUM3QixJQUFJLEtBQVUsRUFBRSxFQUF1QiIsInNvdXJjZXMiOlsid2VicGFjazovL3VwbG9hZHRoaW5nLy4vbm9kZV9tb2R1bGVzL3JlYWN0LXBkZi9kaXN0L2VzbS9QYWdlL0Fubm90YXRpb25MYXllci5jc3M/NjJiYyJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcImFlNzJiOTQwODllYlwiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/react-pdf/dist/esm/Page/AnnotationLayer.css\n");
-
-/***/ }),
-
-/***/ "(ssr)/./node_modules/react-pdf/dist/esm/Page/TextLayer.css":
-/*!************************************************************!*\
-  !*** ./node_modules/react-pdf/dist/esm/Page/TextLayer.css ***!
-  \************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"54b4e0594354\");\nif (false) {}\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHNzcikvLi9ub2RlX21vZHVsZXMvcmVhY3QtcGRmL2Rpc3QvZXNtL1BhZ2UvVGV4dExheWVyLmNzcyIsIm1hcHBpbmdzIjoiOzs7O0FBQUEsaUVBQWUsY0FBYztBQUM3QixJQUFJLEtBQVUsRUFBRSxFQUF1QiIsInNvdXJjZXMiOlsid2VicGFjazovL3VwbG9hZHRoaW5nLy4vbm9kZV9tb2R1bGVzL3JlYWN0LXBkZi9kaXN0L2VzbS9QYWdlL1RleHRMYXllci5jc3M/ZWJlZSJdLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZGVmYXVsdCBcIjU0YjRlMDU5NDM1NFwiXG5pZiAobW9kdWxlLmhvdCkgeyBtb2R1bGUuaG90LmFjY2VwdCgpIH1cbiJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///(ssr)/./node_modules/react-pdf/dist/esm/Page/TextLayer.css\n");
-
-/***/ }),
-
 /***/ "(ssr)/./node_modules/react-pdf/dist/esm/Document.js":
 /*!*****************************************************!*\
   !*** ./node_modules/react-pdf/dist/esm/Document.js ***!

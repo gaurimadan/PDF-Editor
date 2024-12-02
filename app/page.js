@@ -1,9 +1,34 @@
-"use client";
-import React, { useState } from "react";
+'use client'
+
+import React from 'react';
+import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { UploadDropzone } from "@/libs/uploadthing";
-import { FileText, Pencil, Plus } from "lucide-react";
-import MyPdfViewer from "@/components/PdfViewer";
+import { FileText, Pencil, Plus } from 'lucide-react';
+
+const MyPdfViewer = dynamic(() => import('@/components/PdfViewer'), {
+  ssr: false,
+  loading: () => <p>Loading PDF viewer...</p>
+});
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return this.props.fallback;
+    }
+    return this.props.children;
+  }
+}
 
 export default function Home() {
   const [pdfUrl, setPdfUrl] = useState("");
@@ -64,6 +89,7 @@ export default function Home() {
                 className="flex space-x-3 items-center text-purple-600"
                 target="_blank"
                 href={pdfUrl}
+                rel="noopener noreferrer"
               >
                 <FileText />
                 <span>View PDF</span>
@@ -72,7 +98,7 @@ export default function Home() {
               <UploadDropzone
                 endpoint="pdfUploader"
                 onClientUploadComplete={(res) => {
-                  setPdfUrl(res[0].fileUrl); // Set the uploaded file URL
+                  setPdfUrl(res[0].fileUrl);
                   console.log("Files: ", res);
                   alert("Upload Completed");
                 }}
@@ -95,9 +121,12 @@ export default function Home() {
       {/* PDF Viewer Section */}
       {pdfUrl && (
         <div className="mt-12">
-          <MyPdfViewer myFile={pdfUrl} />
+          <ErrorBoundary fallback={<p>Error loading PDF. Please try again later.</p>}>
+            <MyPdfViewer myFile={pdfUrl} />
+          </ErrorBoundary>
         </div>
       )}
     </div>
   );
 }
+
