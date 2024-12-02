@@ -1,8 +1,9 @@
 # Node modules
 node_modules/
 
-#.next
+# Next.js build output
 .next/
+
 
 # Logs
 *.log
