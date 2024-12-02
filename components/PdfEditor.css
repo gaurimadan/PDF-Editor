@@ -1,0 +1,132 @@
+.pdf-editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  .pdf-toolbar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .toolbar-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: white;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  
+  .toolbar-button:hover {
+    background: #f1f5f9;
+  }
+  
+  .toolbar-button.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #2563eb;
+  }
+  
+  .pdf-container {
+    width: 100%;
+    overflow: auto;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pdf-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.5rem;
+    background: #f8fafc;
+    border-radius: 6px;
+    width: 100%;
+  }
+  
+  .control-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    background: white;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .control-button:hover:not(:disabled) {
+    background: #f1f5f9;
+  }
+  
+  .control-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .page-info {
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+  
+  .pdf-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    color: #64748b;
+  }
+  
+  .pdf-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    width: 100%;
+    color: #ef4444;
+    background: #fef2f2;
+    border-radius: 6px;
+    padding: 1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 640px) {
+    .pdf-toolbar {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .pdf-controls {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+  
+  

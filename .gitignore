@@ -1,6 +1,9 @@
 # Node modules
 node_modules/
 
+#.next
+.next/
+
 # Logs
 *.log
 
